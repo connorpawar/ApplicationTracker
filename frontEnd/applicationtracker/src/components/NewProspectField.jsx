@@ -1,29 +1,7 @@
-
 import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
-import MenuItem from '@material-ui/core/MenuItem';
 import TextField from '@material-ui/core/TextField';
 import DateChoice from './DateChoice'
-
-const currencies = [
-  {
-    value: 'USD',
-    label: '$',
-  },
-  {
-    value: 'EUR',
-    label: '€',
-  },
-  {
-    value: 'BTC',
-    label: '฿',
-  },
-  {
-    value: 'JPY',
-    label: '¥',
-  },
-];
-
 
 const useStyles = makeStyles(theme => ({
   container: {
@@ -45,10 +23,8 @@ const useStyles = makeStyles(theme => ({
 export default function NewProspectField() {
   const classes = useStyles();
   const [values, setValues] = React.useState({
-    name: '',
+    Company: '',
     salary: '70000',
-    multiline: 'Controlled',
-    currency: 'USD',
   });
 
   const handleChange = name => event => {
@@ -74,27 +50,13 @@ export default function NewProspectField() {
         variant="outlined"
       />
       <TextField
-        id="outlined-select-currency"
-        select
-        label="Select"
+        required
+        id="link"
+        label="Link"
         className={classes.textField}
-        value={values.currency}
-        onChange={handleChange('currency')}
-        SelectProps={{
-          MenuProps: {
-            className: classes.menu,
-          },
-        }}
-        helperText="Please select your currency"
         margin="normal"
         variant="outlined"
-      >
-        {currencies.map(option => (
-          <MenuItem key={option.value} value={option.value}>
-            {option.label}
-          </MenuItem>
-        ))}
-      </TextField>
+      />
       <TextField
         id="outlined-number"
         label="Salary Offered"
@@ -108,7 +70,7 @@ export default function NewProspectField() {
         margin="normal"
         variant="outlined"
       />
-  <DateChoice className={classes}/>
+      <DateChoice className={classes} />
       <TextField
         id="outlined-full-width"
         label="Job description"

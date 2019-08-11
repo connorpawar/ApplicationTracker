@@ -4,7 +4,6 @@ import { makeStyles } from '@material-ui/core/styles';
 import MenuIcon from '@material-ui/icons/Menu';
 import Menu from '@material-ui/core/Menu';
 import MenuItem from '@material-ui/core/MenuItem';
-import { Link } from 'react-router-dom';
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -15,7 +14,7 @@ const useStyles = makeStyles(theme => ({
   },
 }));
 
-export default function SimpleMenu() {
+export default function OptionsOffered() {
   const classes = useStyles();
   const [anchorEl, setAnchorEl] = React.useState(null);
 
@@ -39,9 +38,7 @@ export default function SimpleMenu() {
         open={Boolean(anchorEl)}
         onClose={handleClose}
       >
-        <MenuItem component={Link} to={'/ViewEntries'}>View Entries</MenuItem>
-        <MenuItem component={Link} to={'/'}>Make New Entry</MenuItem>
-        <MenuItem onClick={handleClose}>Logout</MenuItem>
+        <MenuItem onClick={handleClose}>Delete</MenuItem>
       </Menu>
     </div>
   );
