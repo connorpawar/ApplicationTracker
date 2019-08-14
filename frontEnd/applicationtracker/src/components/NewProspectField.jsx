@@ -24,7 +24,7 @@ export default function NewProspectField() {
   const classes = useStyles();
   const [values, setValues] = React.useState({
     Company: '',
-    salary: '70000',
+    salary: '',
   });
 
   const handleChange = name => event => {
@@ -50,7 +50,6 @@ export default function NewProspectField() {
         variant="outlined"
       />
       <TextField
-        required
         id="link"
         label="Link"
         className={classes.textField}
