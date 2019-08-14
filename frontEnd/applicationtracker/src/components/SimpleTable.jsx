@@ -57,6 +57,7 @@ export default function SimpleTable(props) {
   }
 
   return (
+    <div className={classes.root}>
       <Table className={classes.table}>
         <TableHead>
           <TableRow>
@@ -85,5 +86,6 @@ export default function SimpleTable(props) {
           ))}
         </TableBody>
       </Table>
+      </div>
   );
 }
