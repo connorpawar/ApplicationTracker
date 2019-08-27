@@ -28,22 +28,50 @@ export default function SimpleTable(props) {
 
   const [rows, setRows] = useState([
     {   
-        Company: 'Paycom',
-        Position: 'Software Developer I',
-        Salary: 70000,
-        JobDescription: 'Empty',
-        Link: 'Empty'
+        company: 'Paycom',
+        position: 'Software Developer I',
+        salary: 70000,
+        description: 'Empty',
+        link: 'Empty'
     }]);
 
   const classes = useStyles();
 
   useEffect((progress) => {
-    fetch('https://crudpi.io/e38853/appTracker')
+
+    if(props.version === 'Potential'){
+      fetch('http://localhost:8000/getPotential/1')
       .then(response => response.json())
       .then(JSONresponse => setRows(JSONresponse))
       .catch(error => console.log(error));
+    }else if(props.version === 'Progress'){
+      fetch('http://localhost:8000/getInProgress/1')
+      .then(response => response.json())
+      .then(JSONresponse => setRows(JSONresponse))
+      .catch(error => console.log(error));
+    }else if(props.version === 'Completed'){
+      fetch('http://localhost:8000/getCompleted/1')
+      .then(response => response.json())
+      .then(JSONresponse => setRows(JSONresponse))
+      .catch(error => console.log(error));
+    }else if(props.version === 'Interview'){
+      fetch('http://localhost:8000/getInterviewing/1')
+      .then(response => response.json())
+      .then(JSONresponse => setRows(JSONresponse))
+      .catch(error => console.log(error));
+    }else if(props.version === 'Denied'){
+      fetch('http://localhost:8000/getDenied/1')
+      .then(response => response.json())
+      .then(JSONresponse => setRows(JSONresponse))
+      .catch(error => console.log(error));
+    }else{
+      fetch('http://localhost:8000/getOffered/1')
+      .then(response => response.json())
+      .then(JSONresponse => setRows(JSONresponse))
+      .catch(error => console.log(error));
+    }
   }, []);
-  
+
   if(props.version === 'Potential'){
     options = <OptionsPotential/>
   }else if(props.version === 'Progress'){
@@ -52,6 +80,8 @@ export default function SimpleTable(props) {
     options = <OptionsCompleted/>
   }else if(props.version === 'Interview'){
     options = <OptionsInterview/>
+  }else if(props.version === 'Denied'){
+    options = <OptionsOffered/>
   }else{
     options = <OptionsOffered/>
   }
@@ -67,21 +97,19 @@ export default function SimpleTable(props) {
             <TableCell align="left">Salary</TableCell>
             <TableCell align="left">Job Description</TableCell>
             <TableCell align="left">Link</TableCell>
-            <TableCell align="left">Date Applied</TableCell>
           </TableRow>
         </TableHead>
         <TableBody>
           {rows.map(row => (
-            <TableRow key={row.Company}>
+            <TableRow key={row.company}>
             <TableCell component="th" scope="row">
                 {options}
             </TableCell>
-              <TableCell align="left">{row.Company}</TableCell>
-              <TableCell align="left">{row.Position}</TableCell>
-              <TableCell align="left">{row.Salary}</TableCell>
-              <TableCell align="left">{row.JobDescription}</TableCell>
-              <TableCell align="left"><a href={row.Link}>{row.Link}</a></TableCell>
-              <TableCell align="left">{row.DateApplied}</TableCell>
+              <TableCell align="left">{row.company}</TableCell>
+              <TableCell align="left">{row.position}</TableCell>
+              <TableCell align="left">{row.salary}</TableCell>
+              <TableCell align="left">{row.description}</TableCell>
+              <TableCell align="left"><a href={row.link}>{row.link}</a></TableCell>
             </TableRow>
           ))}
         </TableBody>

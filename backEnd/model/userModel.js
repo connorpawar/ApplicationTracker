@@ -21,18 +21,16 @@ User.createuser = function (newuser, result) {
 };
 
 User.getAlluser = function (result) {
-    console.log("in function call")
-        sql.query("Select * from user", function (err, res) {
-
-                if(err) {
-                    console.log("error: ", err);
-                    result(null, err);
-                }
-                else{
-                  console.log('users : ', res);  
-                 result(null, res);
-                }
-            });   
+    sql.query("Select * from user", function (err, res) {
+        if (err) {
+            console.log("error: ", err);
+            result(null, err);
+        }
+        else {
+            console.log('users : ', res);
+            result(null, res);
+        }
+    });   
 };
 
 module.exports = User;

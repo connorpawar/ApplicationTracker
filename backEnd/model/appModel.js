@@ -1,6 +1,8 @@
 var sql = require('./db.js');
 
 var Application = function (application) {
+    this.app_id = application.app_id;
+    this.user_id = application.user_id
     this.company = application.company;
     this.position = application.position;
     this.description = application.description;
@@ -25,7 +27,7 @@ Application.createPotential = function (newApp, user_id, result) {
 };
 
 Application.getAllPotentials = function (user_id, result) {
-    sql.query("Select * from applications where user_id = ? AND current_tab = 0", user_id, function (err, req, res) {
+    sql.query("Select * from applications where user_id = ? AND current_tab = 0", user_id, function (err, res) {
         if (err) {
             console.log("error: ", err);
             result(err, null);
@@ -37,7 +39,7 @@ Application.getAllPotentials = function (user_id, result) {
 };
 
 Application.getAllInProgress = function (user_id, result) {
-    sql.query("Select * from applications where user_id = ? AND current_tab = 1", user_id, function (err, req, res) {
+    sql.query("Select * from applications where user_id = ? AND current_tab = 1", user_id, function (err, res) {
         if (err) {
             console.log("error: ", err);
             result(err, null);
@@ -49,7 +51,7 @@ Application.getAllInProgress = function (user_id, result) {
 };
 
 Application.getAllCompleted = function (user_id, result) {
-    sql.query("Select * from applications where user_id = ? AND current_tab = 2", user_id, function (err, req, res) {
+    sql.query("Select * from applications where user_id = ? AND current_tab = 2", user_id, function (err, res) {
         if (err) {
             console.log("error: ", err);
             result(err, null);
@@ -61,7 +63,7 @@ Application.getAllCompleted = function (user_id, result) {
 };
 
 Application.getAllInterviewing = function (user_id, result) {
-    sql.query("Select * from applications where user_id = ? AND current_tab = 3", user_id, function (err, req, res) {
+    sql.query("Select * from applications where user_id = ? AND current_tab = 3", user_id, function (err, res) {
         if (err) {
             console.log("error: ", err);
             result(err, null);
@@ -73,7 +75,7 @@ Application.getAllInterviewing = function (user_id, result) {
 };
 
 Application.getAllDenied = function (user_id, result) {
-    sql.query("Select * from applications where user_id = ? AND current_tab = 4", user_id, function (err, req, res) {
+    sql.query("Select * from applications where user_id = ? AND current_tab = 4", user_id, function (err, res) {
         if (err) {
             console.log("error: ", err);
             result(err, null);
@@ -85,7 +87,7 @@ Application.getAllDenied = function (user_id, result) {
 };
 
 Application.getAllOffered = function (user_id, result) {
-    sql.query("Select * from applications where user_id = ? AND current_tab = 5", user_id, function (err, req, res) {
+    sql.query("Select * from applications where user_id = ? AND current_tab = 5", user_id, function (err, res) {
         if (err) {
             console.log("error: ", err);
             result(err, null);
@@ -100,7 +102,7 @@ Application.getAllOffered = function (user_id, result) {
 //Move to different grouping
 
 Application.moveToInProgress = function (app_id, result) {
-    sql.query("UPDATE applications SET prev_tab = current_tab, current_tab = 1 WHERE app_id = ?", app_id, function (err, req, res) {
+    sql.query("UPDATE applications SET prev_tab = current_tab, current_tab = 1 WHERE app_id = ?", app_id, function (err, res) {
         if (err) {
             console.log("error: ", err);
             result(err, null);
@@ -112,7 +114,7 @@ Application.moveToInProgress = function (app_id, result) {
 };
 
 Application.moveToCompleted = function (app_id, result) {
-    sql.query("UPDATE applications SET prev_tab = current_tab, current_tab = 2 WHERE app_id = ?", app_id, function (err, req, res) {
+    sql.query("UPDATE applications SET prev_tab = current_tab, current_tab = 2 WHERE app_id = ?", app_id, function (err, res) {
         if (err) {
             console.log("error: ", err);
             result(err, null);
@@ -136,7 +138,7 @@ Application.moveToInterviewing = function (app_id, result) {
 };
 
 Application.moveToDenied = function (app_id, result) {
-    sql.query("UPDATE applications SET prev_tab = current_tab, current_tab = 4 WHERE app_id = ?", app_id, function (err, req, res) {
+    sql.query("UPDATE applications SET prev_tab = current_tab, current_tab = 4 WHERE app_id = ?", app_id, function (err, res) {
         if (err) {
             console.log("error: ", err);
             result(err, null);
@@ -148,7 +150,7 @@ Application.moveToDenied = function (app_id, result) {
 };
 
 Application.moveToOffered = function (app_id, result) {
-    sql.query("UPDATE applications SET prev_tab = current_tab, current_tab = 5 WHERE app_id = ?", app_id, function (err, req, res) {
+    sql.query("UPDATE applications SET prev_tab = current_tab, current_tab = 5 WHERE app_id = ?", app_id, function (err, res) {
         if (err) {
             console.log("error: ", err);
             result(err, null);
@@ -160,7 +162,7 @@ Application.moveToOffered = function (app_id, result) {
 };
 
 Application.moveToOffered = function (app_id, result) {
-    sql.query("UPDATE applications SET prev_tab = current_tab, current_tab = 5 WHERE app_id = ?", app_id, function (err, req, res) {
+    sql.query("UPDATE applications SET prev_tab = current_tab, current_tab = 5 WHERE app_id = ?", app_id, function (err, res) {
         if (err) {
             console.log("error: ", err);
             result(err, null);
@@ -172,7 +174,7 @@ Application.moveToOffered = function (app_id, result) {
 };
 
 Application.moveToOffered = function (app_id, result) {
-    sql.query("UPDATE applications SET prev_tab = current_tab, current_tab = 5 WHERE app_id = ?", app_id, function (err, req, res) {
+    sql.query("UPDATE applications SET prev_tab = current_tab, current_tab = 5 WHERE app_id = ?", app_id, function (err, res) {
         if (err) {
             console.log("error: ", err);
             result(err, null);

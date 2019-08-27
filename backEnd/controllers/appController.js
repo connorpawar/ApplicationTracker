@@ -6,6 +6,8 @@ exports.list_all_potentials = function (req, res) {
             res.send(err);
             console.log('res', application);
         }
+        console.log(application);
+        // res.json(JSON.stringify(application));
         res.send(application);
     });
 };
@@ -101,7 +103,7 @@ exports.move_to_denied = function (req, res) {
     });
 };
 
-exports.move_to_inProgress = function (req, res) {
+exports.move_to_offered = function (req, res) {
     Application.moveToOffered(req.params.app_id, function (err, application) {
         if (err) {
             res.send(err);
