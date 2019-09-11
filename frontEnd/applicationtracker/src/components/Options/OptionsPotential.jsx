@@ -14,7 +14,7 @@ const useStyles = makeStyles(theme => ({
   },
 }));
 
-export default function OptionsPotential() {
+export default function OptionsPotential(props) {
   const classes = useStyles();
   const [anchorEl, setAnchorEl] = React.useState(null);
 
@@ -23,6 +23,51 @@ export default function OptionsPotential() {
   }
 
   function handleClose() {
+    setAnchorEl(null);
+  }
+
+  function handleCompleted() {
+    fetch('http://localhost:8000/moveToCompleted/' + props.app_id, {
+    method: 'POST',
+    headers:{
+      'Content-Type': 'application/json'
+    }})
+    .then(response => response.json())
+    .then(JSONresponse => JSONresponse)
+    .catch(error => console.log(error));
+
+    props.remover(props.company);
+
+    setAnchorEl(null);
+  }
+
+  function handleProgress() {
+    fetch('http://localhost:8000/moveToInPrgress/' + props.app_id, {
+    method: 'POST',
+    headers:{
+      'Content-Type': 'application/json'
+    }})
+    .then(response => response.json())
+    .then(JSONresponse => JSONresponse)
+    .catch(error => console.log(error));
+
+    props.remover(props.company);
+
+    setAnchorEl(null);
+  }
+
+  function handleDelete() {
+    fetch('http://localhost:8000/deleteApplication/' + props.app_id, {
+    method: 'POST',
+    headers:{
+      'Content-Type': 'application/json'
+    }})
+    .then(response => response.json())
+    .then(JSONresponse => JSONresponse)
+    .catch(error => console.log(error));
+
+    props.remover(props.company);
+
     setAnchorEl(null);
   }
 
@@ -38,9 +83,9 @@ export default function OptionsPotential() {
         open={Boolean(anchorEl)}
         onClose={handleClose}
       >
-        <MenuItem onClick={handleClose}>In Progress</MenuItem>
-        <MenuItem onClick={handleClose}>Completed</MenuItem>
-        <MenuItem onClick={handleClose}>Delete</MenuItem>
+        <MenuItem onClick={handleProgress}>In Progress</MenuItem>
+        <MenuItem onClick={handleCompleted}>Completed</MenuItem>
+        <MenuItem onClick={handleDelete}>Delete</MenuItem>
       </Menu>
     </div>
   );

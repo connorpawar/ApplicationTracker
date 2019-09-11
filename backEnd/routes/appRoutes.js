@@ -51,6 +51,8 @@ app.post('/moveToInterviewing/:app_id', appController.move_to_interviewing);
 app.post('/moveToDenied/:app_id', appController.move_to_denied);
 app.post('/moveToOffered/:app_id', appController.move_to_offered);
 
+app.post('/deleteApplication/:app_id', appController.delete_application);
+
 
 app.post('/createApplication', appController.create_an_application);
 

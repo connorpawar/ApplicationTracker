@@ -114,6 +114,16 @@ exports.move_to_offered = function (req, res) {
 };
 
 
+exports.delete_application = function (req, res) {
+    Application.deleteApp(req.params.app_id, function (err, application) {
+        if (err) {
+            res.send(err);
+            console.log('res', application);
+        }
+        res.send(application);
+    });
+};
+
 
 exports.create_an_application = function (req, res) {
     var new_app = new Application(req.body);

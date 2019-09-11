@@ -173,6 +173,18 @@ Application.moveToOffered = function (app_id, result) {
     });
 };
 
+Application.deleteApp = function (app_id, result) {
+    sql.query("DELETE FROM applications WHERE app_id = ?", app_id, function (err, res) {
+        if (err) {
+            console.log("error: ", err);
+            result(err, null);
+        }
+        else {
+            result(null, res);
+        }
+    });
+};
+
 Application.moveToOffered = function (app_id, result) {
     sql.query("UPDATE applications SET prev_tab = current_tab, current_tab = 5 WHERE app_id = ?", app_id, function (err, res) {
         if (err) {

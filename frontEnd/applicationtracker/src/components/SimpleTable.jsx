@@ -24,8 +24,6 @@ const useStyles = makeStyles(theme => ({
 
 export default function SimpleTable(props) {
 
-  var options;
-
   const [rows, setRows] = useState([
     {   
         company: 'Network Error',
@@ -35,10 +33,15 @@ export default function SimpleTable(props) {
         link: 'Empty'
     }]);
 
+    const removeRow = (rowName) => {
+      let newRows = rows;
+      newRows = rows.filter( (e) => e.company != rowName);
+      setRows(newRows);
+    }
+
   const classes = useStyles();
 
   useEffect((progress) => {
-
     if(props.version === 'Potential'){
       fetch('http://localhost:8000/getPotential/1')
       .then(response => response.json())
@@ -89,7 +92,7 @@ export default function SimpleTable(props) {
           {rows.map(row => (
             <TableRow key={row.company}>
             <TableCell component="th" scope="row">
-              {(props.version === 'Potential') && <OptionsPotential app_id ={row.app_id} />}
+              {(props.version === 'Potential') && <OptionsPotential app_id ={row.app_id} company={row.company} remover={removeRow}/>}
               {(props.version === 'Progress') && <OptionsProgress app_id ={row.app_id} />}
               {(props.version === 'Completed') && <OptionsCompleted app_id ={row.app_id} />}
               {(props.version === 'Interview') && <OptionsInterview app_id ={row.app_id} />}
