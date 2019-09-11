@@ -1,8 +1,10 @@
 var sql = require('./db.js');
 
 var Application = function (application) {
-    this.app_id = application.app_id;
-    this.user_id = application.user_id
+    if(application.app_id){
+        this.app_id = application.app_id;
+    }
+    this.user_id = application.user_id;
     this.company = application.company;
     this.position = application.position;
     this.description = application.description;
@@ -12,15 +14,13 @@ var Application = function (application) {
     this.prev_tab = application.prev_tab;
 };
 
-Application.createPotential = function (newApp, user_id, result) {
-    sql.query("INSERT INTO applications set ?", newApp, function (err, req, res) {
+Application.createPotential = function (newApp, result) {
+    sql.query("INSERT INTO applications set ?", newApp, function (err, res) {
         if (err) {
             console.log("error: ", err);
             result(err, null);
         }
         else {
-            console.log(res.insertId);
-            sql.query("INSERT INTO user_has_app(user_id, app_id) values", [user_id, res.insertId]);
             result(null, res.insertId);
         }
     });

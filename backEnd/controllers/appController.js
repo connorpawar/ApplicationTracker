@@ -118,11 +118,14 @@ exports.move_to_offered = function (req, res) {
 exports.create_an_application = function (req, res) {
     var new_app = new Application(req.body);
 
+    console.log("req", req.body)
+    console.log(new_app);
+
     if (!new_app.company || !new_app.position) {
         res.status(400).send({ error: true, message: 'Please provide correct request body for new application' });
     }
     else {
-        User.createPotential(new_app, req.params.user_id, function (err, user) {
+        Application.createPotential(new_app, req.params.user_id, function (err, user) {
             if (err){
                 res.send(err);
             }

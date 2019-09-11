@@ -6,7 +6,7 @@ const port = 8000;
 var appController = require('../controllers/appController.js');
 var userController = require('../controllers/userController.js');
 
-app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
 app.use(function (req, res, next) {
