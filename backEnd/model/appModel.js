@@ -14,7 +14,7 @@ var Application = function (application) {
     this.prev_tab = application.prev_tab;
 };
 
-Application.createPotential = function (newApp, result) {
+Application.createPotential = function (newApp, user_id, result) {
     sql.query("INSERT INTO applications set ?", newApp, function (err, res) {
         if (err) {
             console.log("error: ", err);

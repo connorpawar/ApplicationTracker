@@ -41,16 +41,8 @@ export default function NewProspectField() {
     setValues({ ...values, [name]: event.target.value });
   };
 
-  // this.company = application.company;
-  // this.position = application.position;
-  // this.description = application.description;
-  // this.salary = application.salary;
-  // this.link = application.link;
-  // this.current_tab = application.current_tab;
-  // this.prev_tab = application.prev_tab;
-
   const handleSubmit = (evt) => {
-    evt.preventDefault();
+    // evt.preventDefault();
 
     fetch('http://localhost:8000/createApplication', {
                 method: 'POST',
@@ -80,6 +72,7 @@ export default function NewProspectField() {
         required
         id="company"
         label="Company"
+        value={values.company}
         onChange={handleChange('company')}
         className={classes.textField}
         margin="normal"
@@ -89,6 +82,7 @@ export default function NewProspectField() {
         required
         id="position"
         label="Position"
+        value={values.position}
         onChange={handleChange('position')}
         className={classes.textField}
         margin="normal"
@@ -97,6 +91,7 @@ export default function NewProspectField() {
       <TextField
         id="link"
         label="Link"
+        value={values.link}
         onChange={handleChange('link')}
         className={classes.textField}
         margin="normal"
