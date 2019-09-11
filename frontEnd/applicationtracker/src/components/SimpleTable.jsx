@@ -28,9 +28,9 @@ export default function SimpleTable(props) {
 
   const [rows, setRows] = useState([
     {   
-        company: 'Paycom',
-        position: 'Software Developer I',
-        salary: 70000,
+        company: 'Network Error',
+        position: 'Empty',
+        salary: 0,
         description: 'Empty',
         link: 'Empty'
     }]);
@@ -72,20 +72,6 @@ export default function SimpleTable(props) {
     }
   }, []);
 
-  if(props.version === 'Potential'){
-    options = <OptionsPotential/>
-  }else if(props.version === 'Progress'){
-    options = <OptionsProgress/>
-  }else if(props.version === 'Completed'){
-    options = <OptionsCompleted/>
-  }else if(props.version === 'Interview'){
-    options = <OptionsInterview/>
-  }else if(props.version === 'Denied'){
-    options = <OptionsOffered/>
-  }else{
-    options = <OptionsOffered/>
-  }
-
   return (
     <div className={classes.root}>
       <Table className={classes.table}>
@@ -103,7 +89,12 @@ export default function SimpleTable(props) {
           {rows.map(row => (
             <TableRow key={row.company}>
             <TableCell component="th" scope="row">
-                {options}
+              {(props.version === 'Potential') && <OptionsPotential app_id ={row.app_id} />}
+              {(props.version === 'Progress') && <OptionsProgress app_id ={row.app_id} />}
+              {(props.version === 'Completed') && <OptionsCompleted app_id ={row.app_id} />}
+              {(props.version === 'Interview') && <OptionsInterview app_id ={row.app_id} />}
+              {(props.version === 'Denied') && <OptionsOffered app_id ={row.app_id} />}
+              {props.version === 'Offered' && <OptionsOffered app_id ={row.app_id} />}
             </TableCell>
               <TableCell align="left">{row.company}</TableCell>
               <TableCell align="left">{row.position}</TableCell>
