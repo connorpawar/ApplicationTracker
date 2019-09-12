@@ -93,11 +93,11 @@ export default function SimpleTable(props) {
             <TableRow key={row.company}>
             <TableCell component="th" scope="row">
               {(props.version === 'Potential') && <OptionsPotential app_id ={row.app_id} company={row.company} remover={removeRow}/>}
-              {(props.version === 'Progress') && <OptionsProgress app_id ={row.app_id} />}
-              {(props.version === 'Completed') && <OptionsCompleted app_id ={row.app_id} />}
-              {(props.version === 'Interview') && <OptionsInterview app_id ={row.app_id} />}
-              {(props.version === 'Denied') && <OptionsOffered app_id ={row.app_id} />}
-              {props.version === 'Offered' && <OptionsOffered app_id ={row.app_id} />}
+              {(props.version === 'Progress') && <OptionsProgress app_id ={row.app_id} company={row.company} remover={removeRow}/>}
+              {(props.version === 'Completed') && <OptionsCompleted app_id ={row.app_id} company={row.company} remover={removeRow}/>}
+              {(props.version === 'Interview') && <OptionsInterview app_id ={row.app_id} company={row.company} remover={removeRow}/>}
+              {(props.version === 'Denied') && <OptionsOffered app_id ={row.app_id} company={row.company} remover={removeRow}/>}
+              {props.version === 'Offered' && <OptionsOffered app_id ={row.app_id} company={row.company} remover={removeRow}/>}
             </TableCell>
               <TableCell align="left">{row.company}</TableCell>
               <TableCell align="left">{row.position}</TableCell>

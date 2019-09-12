@@ -42,7 +42,7 @@ export default function OptionsPotential(props) {
   }
 
   function handleProgress() {
-    fetch('http://localhost:8000/moveToInPrgress/' + props.app_id, {
+    fetch('http://localhost:8000/moveToInProgress/' + props.app_id, {
     method: 'POST',
     headers:{
       'Content-Type': 'application/json'

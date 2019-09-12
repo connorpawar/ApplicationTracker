@@ -1,4 +1,5 @@
 import React from 'react';
+import { Redirect } from 'react-router';
 import Button from '@material-ui/core/Button';
 import { makeStyles } from '@material-ui/core/styles';
 import TextField from '@material-ui/core/TextField';
@@ -26,6 +27,9 @@ const useStyles = makeStyles(theme => ({
 
 export default function NewProspectField() {
   const classes = useStyles();
+
+  const [toView, setToView] = React.useState(false);
+
   const [values, setValues] = React.useState({
     user_id: 1,
     current_tab: 0,
@@ -42,7 +46,6 @@ export default function NewProspectField() {
   };
 
   const handleSubmit = (evt) => {
-    // evt.preventDefault();
 
     fetch('http://localhost:8000/createApplication', {
                 method: 'POST',
@@ -64,6 +67,8 @@ export default function NewProspectField() {
               link: '',
               salary: 0
     });
+
+    setToView(true);
   };
 
   return (
@@ -125,6 +130,7 @@ export default function NewProspectField() {
       <Button variant="contained" color="primary" type="submit" className={classes.buttonStyle}>
         Add Application Info
       </Button>
+      {toView ? <Redirect to={'/ViewEntries'}/> : null}
     </form>
   );
 }

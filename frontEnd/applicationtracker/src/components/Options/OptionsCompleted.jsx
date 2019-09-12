@@ -14,7 +14,7 @@ const useStyles = makeStyles(theme => ({
   },
 }));
 
-export default function OptionsCompleted() {
+export default function OptionsCompleted(props) {
   const classes = useStyles();
   const [anchorEl, setAnchorEl] = React.useState(null);
 
@@ -23,6 +23,51 @@ export default function OptionsCompleted() {
   }
 
   function handleClose() {
+    setAnchorEl(null);
+  }
+
+  function handleInterview() {
+    fetch('http://localhost:8000/moveToInterviewing/' + props.app_id, {
+    method: 'POST',
+    headers:{
+      'Content-Type': 'application/json'
+    }})
+    .then(response => response.json())
+    .then(JSONresponse => JSONresponse)
+    .catch(error => console.log(error));
+
+    props.remover(props.company);
+
+    setAnchorEl(null);
+  }
+
+  function handleDenied() {
+    fetch('http://localhost:8000/moveToDenied/' + props.app_id, {
+    method: 'POST',
+    headers:{
+      'Content-Type': 'application/json'
+    }})
+    .then(response => response.json())
+    .then(JSONresponse => JSONresponse)
+    .catch(error => console.log(error));
+
+    props.remover(props.company);
+
+    setAnchorEl(null);
+  }
+
+  function handleDelete() {
+    fetch('http://localhost:8000/deleteApplication/' + props.app_id, {
+    method: 'POST',
+    headers:{
+      'Content-Type': 'application/json'
+    }})
+    .then(response => response.json())
+    .then(JSONresponse => JSONresponse)
+    .catch(error => console.log(error));
+
+    props.remover(props.company);
+
     setAnchorEl(null);
   }
 
@@ -38,9 +83,9 @@ export default function OptionsCompleted() {
         open={Boolean(anchorEl)}
         onClose={handleClose}
       >
-        <MenuItem onClick={handleClose}>Interview</MenuItem>
+        <MenuItem onClick={handleInterview}>Interview</MenuItem>
         <MenuItem onClick={handleClose}>Denied</MenuItem>
-        <MenuItem onClick={handleClose}>Delete</MenuItem>
+        <MenuItem onClick={handleDelete}>Delete</MenuItem>
       </Menu>
     </div>
   );

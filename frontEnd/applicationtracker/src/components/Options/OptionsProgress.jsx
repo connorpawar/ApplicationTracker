@@ -14,12 +14,42 @@ const useStyles = makeStyles(theme => ({
   },
 }));
 
-export default function OptionsProgress() {
+export default function OptionsProgress(props) {
   const classes = useStyles();
   const [anchorEl, setAnchorEl] = React.useState(null);
 
   function handleClick(event) {
     setAnchorEl(event.currentTarget);
+  }
+
+  function handleCompleted() {
+    fetch('http://localhost:8000/moveToCompleted/' + props.app_id, {
+    method: 'POST',
+    headers:{
+      'Content-Type': 'application/json'
+    }})
+    .then(response => response.json())
+    .then(JSONresponse => JSONresponse)
+    .catch(error => console.log(error));
+
+    props.remover(props.company);
+
+    setAnchorEl(null);
+  }
+
+  function handleDelete() {
+    fetch('http://localhost:8000/deleteApplication/' + props.app_id, {
+    method: 'POST',
+    headers:{
+      'Content-Type': 'application/json'
+    }})
+    .then(response => response.json())
+    .then(JSONresponse => JSONresponse)
+    .catch(error => console.log(error));
+
+    props.remover(props.company);
+
+    setAnchorEl(null);
   }
 
   function handleClose() {
@@ -38,8 +68,8 @@ export default function OptionsProgress() {
         open={Boolean(anchorEl)}
         onClose={handleClose}
       >
-        <MenuItem onClick={handleClose}>Completed</MenuItem>
-        <MenuItem onClick={handleClose}>Delete</MenuItem>
+        <MenuItem onClick={handleCompleted}>Completed</MenuItem>
+        <MenuItem onClick={handleDelete}>Delete</MenuItem>
       </Menu>
     </div>
   );
