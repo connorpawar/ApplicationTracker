@@ -84,7 +84,7 @@ export default function OptionsCompleted(props) {
         onClose={handleClose}
       >
         <MenuItem onClick={handleInterview}>Interview</MenuItem>
-        <MenuItem onClick={handleClose}>Denied</MenuItem>
+        <MenuItem onClick={handleDenied}>Denied</MenuItem>
         <MenuItem onClick={handleDelete}>Delete</MenuItem>
       </Menu>
     </div>

@@ -14,7 +14,7 @@ const useStyles = makeStyles(theme => ({
   },
 }));
 
-export default function OptionsOffered() {
+export default function OptionsOffered(props) {
   const classes = useStyles();
   const [anchorEl, setAnchorEl] = React.useState(null);
 
@@ -23,6 +23,21 @@ export default function OptionsOffered() {
   }
 
   function handleClose() {
+    setAnchorEl(null);
+  }
+
+  function handleDelete() {
+    fetch('http://localhost:8000/deleteApplication/' + props.app_id, {
+    method: 'POST',
+    headers:{
+      'Content-Type': 'application/json'
+    }})
+    .then(response => response.json())
+    .then(JSONresponse => JSONresponse)
+    .catch(error => console.log(error));
+
+    props.remover(props.company);
+
     setAnchorEl(null);
   }
 
@@ -38,7 +53,7 @@ export default function OptionsOffered() {
         open={Boolean(anchorEl)}
         onClose={handleClose}
       >
-        <MenuItem onClick={handleClose}>Delete</MenuItem>
+        <MenuItem onClick={handleDelete}>Delete</MenuItem>
       </Menu>
     </div>
   );
