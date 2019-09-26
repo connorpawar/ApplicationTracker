@@ -27,7 +27,7 @@ export default function OptionsCompleted(props) {
   }
 
   function handleInterview() {
-    fetch('http://localhost:8000/moveToInterviewing/' + props.app_id, {
+    fetch('http://connorpawar.com:8000/moveToInterviewing/' + props.app_id, {
     method: 'POST',
     headers:{
       'Content-Type': 'application/json'
@@ -42,7 +42,7 @@ export default function OptionsCompleted(props) {
   }
 
   function handleDenied() {
-    fetch('http://localhost:8000/moveToDenied/' + props.app_id, {
+    fetch('http://connorpawar.com:8000/moveToDenied/' + props.app_id, {
     method: 'POST',
     headers:{
       'Content-Type': 'application/json'
@@ -57,7 +57,7 @@ export default function OptionsCompleted(props) {
   }
 
   function handleDelete() {
-    fetch('http://localhost:8000/deleteApplication/' + props.app_id, {
+    fetch('http://connorpawar.com:8000/deleteApplication/' + props.app_id, {
     method: 'POST',
     headers:{
       'Content-Type': 'application/json'
