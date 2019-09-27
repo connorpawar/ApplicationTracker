@@ -6,8 +6,9 @@ exports.list_all_users = function (req, res) {
         if (err) {
             res.send(err);
             console.log('res', user);
-        }
-        res.send(user);
+        } else{
+        	res.send(application);
+	}
     });
 };
 

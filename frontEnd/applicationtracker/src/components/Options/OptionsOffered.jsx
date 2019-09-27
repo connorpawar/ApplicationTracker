@@ -27,7 +27,7 @@ export default function OptionsOffered(props) {
   }
 
   function handleDelete() {
-    fetch('http://connorpawar.com:8000/deleteApplication/' + props.app_id, {
+    fetch('https://connorpawar.com:8000/deleteApplication/' + props.app_id, {
     method: 'POST',
     headers:{
       'Content-Type': 'application/json'

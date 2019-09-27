@@ -47,7 +47,7 @@ export default function NewProspectField() {
 
   const handleSubmit = (evt) => {
 
-    fetch('http://connorpawar.com:8000/createApplication', {
+    fetch('https://connorpawar.com:8000/createApplication', {
                 method: 'POST',
                 headers:{
                   'Content-Type': 'application/json'
