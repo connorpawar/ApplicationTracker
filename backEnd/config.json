@@ -1,0 +1,12 @@
+{
+    "routes": [
+      {
+        "route": "/ApplicationTracker",
+        "address": "https://www.connorpawar.com:3000"
+      },
+      {
+        "route": "/api",
+        "address": "https://www.connorpawar.com:8000"
+      }
+    ]
+  }
