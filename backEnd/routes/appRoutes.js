@@ -1,5 +1,11 @@
 const express = require('express');
 const bodyParser = require('body-parser');
+var https = require('https');
+var fs = require('fs');
+var privateKey  = fs.readFileSync('sslCerts/server.key', 'utf8');
+var certificate = fs.readFileSync('sslCerts/server.crt', 'utf8');
+
+var credentials = {key: privateKey, cert: certificate};
 const app = express();
 const port = 8000;
 
@@ -56,4 +62,6 @@ app.post('/deleteApplication/:app_id', appController.delete_application);
 
 app.post('/createApplication', appController.create_an_application);
 
-app.listen(port, () => console.log(`running on port ${port}!`))
+var httpsServer = https.createServer(credentials, app);
+
+httpsServer.listen(port, () => console.log(`running on port ${port}!`))
