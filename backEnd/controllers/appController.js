@@ -5,10 +5,10 @@ exports.list_all_potentials = function (req, res) {
         if (err) {
             res.send(err);
             console.log('res', application);
-        } else{
-		console.log(application);
-        	res.send(application);
-	}
+        } else {
+            console.log(application);
+            res.send(application);
+        }
     });
 };
 
@@ -17,9 +17,9 @@ exports.list_all_inProgress = function (req, res) {
         if (err) {
             res.send(err);
             console.log('res', application);
-        } else{
-        	res.send(application);
-	}
+        } else {
+            res.send(application);
+        }
     });
 };
 
@@ -28,9 +28,9 @@ exports.list_all_completed = function (req, res) {
         if (err) {
             res.send(err);
             console.log('res', application);
-        } else{
-        	res.send(application);
-	}
+        } else {
+            res.send(application);
+        }
     });
 };
 
@@ -39,9 +39,9 @@ exports.list_all_interviewing = function (req, res) {
         if (err) {
             res.send(err);
             console.log('res', application);
-        } else{
-        	res.send(application);
-	}
+        } else {
+            res.send(application);
+        }
     });
 };
 
@@ -50,9 +50,9 @@ exports.list_all_denied = function (req, res) {
         if (err) {
             res.send(err);
             console.log('res', application);
-        } else{
-        	res.send(application);
-	}
+        } else {
+            res.send(application);
+        }
     });
 };
 
@@ -61,9 +61,9 @@ exports.list_all_offered = function (req, res) {
         if (err) {
             res.send(err);
             console.log('res', application);
-        } else{
-        	res.send(application);
-	}
+        } else {
+            res.send(application);
+        }
     });
 };
 
@@ -73,9 +73,9 @@ exports.move_to_inProgress = function (req, res) {
         if (err) {
             res.send(err);
             console.log('res', application);
-        } else{
-        	res.send(application);
-	}
+        } else {
+            res.send(application);
+        }
     });
 };
 
@@ -84,9 +84,9 @@ exports.move_to_completed = function (req, res) {
         if (err) {
             res.send(err);
             console.log('res', application);
-        } else{
-        	res.send(application);
-	}
+        } else {
+            res.send(application);
+        }
     });
 };
 
@@ -95,9 +95,9 @@ exports.move_to_interviewing = function (req, res) {
         if (err) {
             res.send(err);
             console.log('res', application);
-        } else{
-        	res.send(application);
-	}
+        } else {
+            res.send(application);
+        }
     });
 };
 
@@ -106,9 +106,9 @@ exports.move_to_denied = function (req, res) {
         if (err) {
             res.send(err);
             console.log('res', application);
-        } else{
-        	res.send(application);
-	}
+        } else {
+            res.send(application);
+        }
     });
 };
 
@@ -117,9 +117,9 @@ exports.move_to_offered = function (req, res) {
         if (err) {
             res.send(err);
             console.log('res', application);
-        } else{
-        	res.send(application);
-	}
+        } else {
+            res.send(application);
+        }
     });
 };
 
@@ -129,9 +129,9 @@ exports.delete_application = function (req, res) {
         if (err) {
             res.send(err);
             console.log('res', application);
-        } else{
-        	res.send(application);
-	}
+        } else {
+            res.send(application);
+        }
     });
 };
 
@@ -147,7 +147,7 @@ exports.create_an_application = function (req, res) {
     }
     else {
         Application.createPotential(new_app, req.params.user_id, function (err, user) {
-            if (err){
+            if (err) {
                 res.send(err);
             }
             res.json(user);
