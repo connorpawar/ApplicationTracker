@@ -43,32 +43,32 @@ export default function SimpleTable(props) {
 
   useEffect((progress) => {
     if(props.version === 'Potential'){
-      fetch('https://connorpawar.com:8000/getPotential/1')
+      fetch('https://connorpawar.com/getPotential/1')
       .then(response => response.json())
       .then(JSONresponse => setRows(JSONresponse))
       .catch(error => console.log(error));
     }else if(props.version === 'Progress'){
-      fetch('https://connorpawar.com:8000/getInProgress/1')
+      fetch('https://connorpawar.com/getInProgress/1')
       .then(response => response.json())
       .then(JSONresponse => setRows(JSONresponse))
       .catch(error => console.log(error));
     }else if(props.version === 'Completed'){
-      fetch('https://connorpawar.com:8000/getCompleted/1')
+      fetch('https://connorpawar.com/getCompleted/1')
       .then(response => response.json())
       .then(JSONresponse => setRows(JSONresponse))
       .catch(error => console.log(error));
     }else if(props.version === 'Interview'){
-      fetch('https://connorpawar.com:8000/getInterviewing/1')
+      fetch('https://connorpawar.com/getInterviewing/1')
       .then(response => response.json())
       .then(JSONresponse => setRows(JSONresponse))
       .catch(error => console.log(error));
     }else if(props.version === 'Denied'){
-      fetch('https://connorpawar.com:8000/getDenied/1')
+      fetch('https://connorpawar.com/getDenied/1')
       .then(response => response.json())
       .then(JSONresponse => setRows(JSONresponse))
       .catch(error => console.log(error));
     }else{
-      fetch('https://connorpawar.com:8000/getOffered/1')
+      fetch('https://connorpawar.com/getOffered/1')
       .then(response => response.json())
       .then(JSONresponse => setRows(JSONresponse))
       .catch(error => console.log(error));

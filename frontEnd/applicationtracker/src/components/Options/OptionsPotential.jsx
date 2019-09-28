@@ -27,7 +27,7 @@ export default function OptionsPotential(props) {
   }
 
   function handleCompleted() {
-    fetch('https://connorpawar.com:8000/moveToCompleted/' + props.app_id, {
+    fetch('https://connorpawar.com/moveToCompleted/' + props.app_id, {
     method: 'POST',
     headers:{
       'Content-Type': 'application/json'
@@ -42,7 +42,7 @@ export default function OptionsPotential(props) {
   }
 
   function handleProgress() {
-    fetch('https://connorpawar.com:8000/moveToInProgress/' + props.app_id, {
+    fetch('https://connorpawar.com/moveToInProgress/' + props.app_id, {
     method: 'POST',
     headers:{
       'Content-Type': 'application/json'
@@ -57,7 +57,7 @@ export default function OptionsPotential(props) {
   }
 
   function handleDelete() {
-    fetch('https://connorpawar.com:8000/deleteApplication/' + props.app_id, {
+    fetch('https://connorpawar.com/deleteApplication/' + props.app_id, {
     method: 'POST',
     headers:{
       'Content-Type': 'application/json'
