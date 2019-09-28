@@ -18,8 +18,7 @@ var userController = require('../controllers/userController.js');
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
-app.use(express.static(path.join('/../../frontEnd/applicationtracker/', 'build')));
-
+app.use('/', express.static(path.join(__dirname, 'build')));
 
 app.use(function (req, res, next) {
 
@@ -74,4 +73,4 @@ app.get('*', (req,res) => {
 
 var httpsServer = https.createServer(credentials, app);
 
-httpsServer.listen(port, () => console.log(`running on port ${port}!`))
+httpsServer.listen(port || 3000, () => console.log(`running on port ${port}!`))
