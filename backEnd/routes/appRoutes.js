@@ -1,12 +1,10 @@
 const express = require('express');
 const path = require('path'); 
 const bodyParser = require('body-parser');
-const proxy = require('http-proxy-middleware');
 var https = require('https');
 var fs = require('fs');
 
 // Config
-const { routes } = require('config.json');
 var privateKey  = fs.readFileSync('sslCerts/server.key', 'utf8');
 var certificate = fs.readFileSync('sslCerts/server.crt', 'utf8');
 
@@ -22,16 +20,6 @@ app.use(bodyParser.json());
 
 app.use(express.static(path.join('/../../frontEnd/applicationtracker/', 'build')));
 
-for (route of routes) {
-    app.use(route.route,
-        proxy({
-            target: route.address,
-            pathRewrite: (path, req) => {
-                return path.split('/').slice(2).join('/'); // Could use replace, but take care of the leading '/'
-            }
-        })
-    );
-}
 
 app.use(function (req, res, next) {
 
