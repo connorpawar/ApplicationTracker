@@ -1,4 +1,5 @@
 const express = require('express');
+const path = require('path'); 
 const bodyParser = require('body-parser');
 const proxy = require('http-proxy-middleware');
 var https = require('https');
@@ -18,6 +19,8 @@ var userController = require('../controllers/userController.js');
 
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
+
+app.use(express.static(path.join('/../../frontEnd/applicationtracker/', 'build')));
 
 for (route of routes) {
     app.use(route.route,
@@ -49,8 +52,6 @@ app.use(function (req, res, next) {
     next();
 });
 
-app.get('/', (req, res) => res.send('Server is up and running'));
-
 app.get('/getAllUsers', userController.list_all_users);
 
 
@@ -76,6 +77,12 @@ app.post('/deleteApplication/:app_id', appController.delete_application);
 
 
 app.post('/createApplication', appController.create_an_application);
+
+
+//Serving React
+app.get('*', (req,res) => {
+    res.sendFile(path.join(__dirname, 'build/index.html'));
+});
 
 var httpsServer = https.createServer(credentials, app);
 
