@@ -18,7 +18,7 @@ var userController = require('../controllers/userController.js');
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
-app.use('/', express.static(path.join(__dirname, 'build')));
+app.use('/applicationtracker', express.static(path.join(__dirname, 'build')));
 
 app.use(function (req, res, next) {
 
@@ -67,7 +67,7 @@ app.post('/createApplication', appController.create_an_application);
 
 
 //Serving React
-app.get('*', (req,res) => {
+app.get('/applicationtracker', (req,res) => {
     res.sendFile(path.join(__dirname, 'build/index.html'));
 });
 
